@@ -22,3 +22,22 @@ class TodoListCreate(
         return self.create(request, *args, **kwargs)
     
 
+
+class TodoRetriveUpdateDelete(
+    generics.GenericAPIView,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin):
+
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+    def get(self, request:Request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+    
+    def put(self, request:Request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+    
+    def delete(self, request:Request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+    
