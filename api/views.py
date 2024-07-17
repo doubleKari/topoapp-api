@@ -1,9 +1,24 @@
-from rest_framework import mixins, generics
+from rest_framework.response import Response
 from rest_framework.request import Request
+from rest_framework.decorators import api_view
+
+from rest_framework import mixins, generics, status
 from .models import Todo
 from .serializer import TodoSerializer
 
 # Create your views here.
+
+@api_view(['GET'])
+def ApiOverview(request:Request):
+    response={
+        "TodoCreatePost": "todo-list",
+        "TodoRetrieveUpdateDelete": "todo-detail"
+    }
+    
+    return Response(data=response)
+
+
+
 
 
 class TodoListCreate(
